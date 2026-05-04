@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar - DELETE</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Excluir Registro (DELETE)</h1>
+    <p>Atenção: Esta ação é permanente.</p>
+    <input type="text" id="cpfExcluir" placeholder="CPF do registro para excluir">
+    <button type="button" class="btn-delete" onclick="deletarDados()">Deletar permanentemente</button>
+</div>
+
+<script>
+    function deletarDados() {
+        const cpf = document.getElementById('cpfExcluir').value;
+        if(!cpf) return alert("Digite um CPF!");
+
+        fetch('/api/pessoas')
+            .then(res => res.json())
+            .then(data => {
+                const p = data.find(pessoa => pessoa.cpf === cpf);
+                if (p) {
+                    if(confirm(`Deseja mesmo excluir ${p.nome}?`)) {
+                        fetch(`/api/pessoas/${p.id}`, { method: 'DELETE' })
+                        .then(() => {
+                            alert('Excluído com sucesso!');
+                            document.getElementById('cpfExcluir').value = '';
+                        });
+                    }
+                } else { alert('Registro não encontrado!'); }
+            });
+    }
+</script>
+</body>
+</html>

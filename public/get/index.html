@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista - GET</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Dados Cadastrais (GET)</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Cidade</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-corpo"></tbody>
+    </table>
+</div>
+
+<script>
+    fetch('/api/pessoas')
+        .then(res => res.json())
+        .then(data => {
+            const tabela = document.getElementById('tabela-corpo');
+            data.forEach(p => {
+                const linha = `<tr>
+                    <td>${p.id}</td>
+                    <td>${p.nome} ${p.sobrenome}</td>
+                    <td>${p.cpf}</td>
+                    <td>${p.cidade}</td>
+                </tr>`;
+                tabela.innerHTML += linha;
+            });
+        });
+</script>
+</body>
+</html>

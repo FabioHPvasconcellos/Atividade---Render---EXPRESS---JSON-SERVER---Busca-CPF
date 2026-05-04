@@ -1,0 +1,46 @@
+{
+  "pessoas": [
+    {
+      "id": 1,
+      "nome": "Maria",
+      "sobrenome": "Silva",
+      "email": "maria.silva@email.com",
+      "idade": 20,
+      "telefone": "(11) 99999-0001",
+      "rua": "Rua das Flores, 123",
+      "bairro": "Centro",
+      "cidade": "Mogi das Cruzes",
+      "estado": "SP",
+      "rg": "12.345.678-9",
+      "cpf": "123.456.789-00"
+    },
+    {
+      "id": 4,
+      "nome": "Pedro",
+      "sobrenome": "Santos",
+      "email": "pedro.santos@email.com",
+      "idade": "30",
+      "telefone": "(11) 99999-0004",
+      "rua": "Av. Brasil, 456",
+      "bairro": "Vila Nova",
+      "cidade": "Suzano",
+      "estado": "SP",
+      "rg": "23.456.789-0",
+      "cpf": "111.222.333-44"
+    },
+    {
+      "id": 5,
+      "nome": "Tiago",
+      "sobrenome": "Oliveira",
+      "email": "tiago.oliver@email.com",
+      "idade": "70",
+      "telefone": "(11) 99999-0005",
+      "rua": "Rua XV de Novembro, 789",
+      "bairro": "Alto do Ipiranga",
+      "cidade": "Mogi das Cruzes",
+      "estado": "SP",
+      "rg": "34.567.890-1",
+      "cpf": "999.888.777-66"
+    }
+  ]
+}
