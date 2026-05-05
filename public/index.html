@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,39 +18,62 @@
             text-align: center;
             background: white;
             padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
         }
-        h1 { color: #2c3e50; margin-bottom: 2rem; }
+        h1 { color: #1a73e8; margin-bottom: 0.5rem; }
+        p { color: #5f6368; margin-bottom: 2rem; }
+
         .menu-options {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-direction: column;
         }
         .btn {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
             text-decoration: none;
             color: white;
             border-radius: 8px;
-            transition: transform 0.2s, background 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .btn-list { background-color: #3498db; }
-        .btn-list:hover { background-color: #2980b9; transform: scale(1.05); }
-        .btn-add { background-color: #27ae60; }
-        .btn-add:hover { background-color: #219150; transform: scale(1.05); }
-        .footer { margin-top: 2rem; font-size: 12px; color: #7f8c8d; }
+        /* Cores baseadas na operação */
+        .btn-get { background-color: #1a73e8; } /* Azul */
+        .btn-post { background-color: #34a853; } /* Verde */
+        .btn-put { background-color: #fbbc04; } /* Amarelo */
+        .btn-delete { background-color: #ea4335; } /* Vermelho */
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .footer { margin-top: 2rem; font-size: 13px; color: #9aa0a6; border-top: 1px solid #eee; padding-top: 1rem; }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Gerenciamento de Usuários</h1>
+    <h1>Sistema CRUD</h1>
+    <p>Gestão de Cadastros via CPF</p>
+
     <div class="menu-options">
-        <a href="/get/index.html" class="btn btn-list">🔍 Visualizar Cadastros</a>
-        <a href="/post/index.html" class="btn btn-add">➕ Cadastrar Novo CPF</a>
+        <a href="/get/index.html" class="btn btn-get">🔍 Listar Registros (GET)</a>
+        <a href="/post/index.html" class="btn btn-post">➕ Novo Cadastro (POST)</a>
+        <a href="/put/index.html" class="btn btn-put">✏️ Editar Registro (PUT)</a>
+        <a href="/delete/index.html" class="btn btn-delete">🗑️ Excluir Registro (DELETE)</a>
     </div>
+
     <div class="footer">
-        Projeto CRUD - Fábio Vasconcellos
+        Desenvolvido por Fábio Vasconcellos<br>
+        <strong>Atividade Render - UMC</strong>
     </div>
 </div>
 </body>
