@@ -1,35 +1,34 @@
-function buscarDados() {
-    const rgBusca = document.getElementById('buscaRg').value;
-    fetch('/api/pessoas')
-        .then(res => res.json())
-        .then(data => {
-            const p = data.find(pessoa => pessoa.rg === rgBusca);
-            if (p) {
-                // Preenche os campos para edição
-                document.getElementById('id').value = p.id;
-                document.getElementById('nome').value = p.nome;
-                document.getElementById('sobrenome').value = p.sobrenome;
-                document.getElementById('rg').value = p.rg;
-                // Preencher demais campos se houver...
-            } else {
-                alert('Pessoa não encontrada com este RG.');
-            }
-        });
+async function carregarDados() {
+    const cpf = document.getElementById('cpfBusca').value;
+    const res = await fetch(`/api/pessoas?cpf=${cpf}`);
+    const dados = await res.json();
+
+    if (dados.length > 0) {
+        const p = dados[0];
+        document.getElementById('idEdit').value = p.id;
+        document.getElementById('nome').value = p.nome;
+        document.getElementById('sobrenome').value = p.sobrenome;
+        document.getElementById('email').value = p.email;
+        document.getElementById('formEdit').style.display = 'block';
+    } else {
+        alert("CPF não encontrado");
+    }
 }
 
-function atualizarDados() {
-    const id = document.getElementById('id').value;
-    const dadosAtualizados = {
+async function salvarAlteracoes() {
+    const id = document.getElementById('idEdit').value;
+    const novosDados = {
         nome: document.getElementById('nome').value,
         sobrenome: document.getElementById('sobrenome').value,
-        rg: document.getElementById('rg').value
-        // Deve-se enviar todos os campos para não perdê-los no PUT
+        email: document.getElementById('email').value
+        // Adicione os outros campos do db.json aqui conforme a necessidade
     };
 
-    fetch(`/api/pessoas/${id}`, {
+    const res = await fetch(`/api/pessoas/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dadosAtualizados)
-    })
-    .then(() => alert('Dados atualizados com sucesso!'));
+        body: JSON.stringify(novosDados)
+    });
+
+    if (res.ok) alert("Atualizado com sucesso!");
 }

@@ -1,20 +1,20 @@
-function deletarDados() {
-    const rgParaExcluir = document.getElementById('rgExcluir').value;
+async function buscarParaDeletar() {
+    const cpf = document.getElementById('cpfBusca').value;
+    const msg = document.getElementById('mensagem');
 
-    fetch('/api/pessoas')
-        .then(res => res.json())
-        .then(data => {
-            const pessoa = data.find(p => p.rg === rgParaExcluir);
-            if (pessoa) {
-                if (confirm(`Deseja realmente excluir ${pessoa.nome}?`)) {
-                    fetch(`/api/pessoas/${pessoa.id}`, { method: 'DELETE' })
-                    .then(() => {
-                        alert('Excluído com sucesso!');
-                        document.getElementById('rgExcluir').value = '';
-                    });
-                }
-            } else {
-                alert('RG não localizado.');
-            }
-        });
+    // Função de busca por CPF (como pedido no trabalho)
+    const response = await fetch(`/api/pessoas?cpf=${cpf}`);
+    const dados = await response.json();
+
+    if (dados.length > 0) {
+        const id = dados[0].id;
+        if (confirm(`Deseja excluir ${dados[0].nome}?`)) {
+            await fetch(`/api/pessoas/${id}`, { method: 'DELETE' });
+            msg.innerText = "Registro excluído com sucesso!";
+            msg.style.color = "green";
+        }
+    } else {
+        msg.innerText = "CPF não encontrado.";
+        msg.style.color = "red";
+    }
 }

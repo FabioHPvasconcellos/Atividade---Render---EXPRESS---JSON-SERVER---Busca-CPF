@@ -2,62 +2,25 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Atualizar - PUT</title>
+    <title>Atualizar Registro</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Editar Registro (PUT)</h1>
-    <div class="search-box">
-        <input type="text" id="buscaCpf" placeholder="Digite o CPF para buscar">
-        <button type="button" onclick="buscarDados()">Buscar</button>
-    </div>
-    <hr>
-    <form id="formPut">
-        <input type="text" id="id" readonly placeholder="ID Automático">
+    <h1>Editar Registro</h1>
+    <input type="text" id="cpfBusca" placeholder="CPF do registro">
+    <button onclick="carregarDados()">Carregar Dados</button>
+
+    <form id="formEdit" style="display:none; margin-top:20px;">
+        <input type="hidden" id="idEdit">
         <input type="text" id="nome" placeholder="Nome">
         <input type="text" id="sobrenome" placeholder="Sobrenome">
-        <input type="text" id="email" placeholder="E-mail">
-        <input type="text" id="cpf" readonly placeholder="CPF (Não alterável)">
-        <button type="button" onclick="atualizarDados()">Salvar Alterações</button>
+        <input type="email" id="email" placeholder="Email">
+        <button type="button" onclick="salvarAlteracoes()">Salvar Alterações</button>
     </form>
+    <p id="mensagem"></p>
+    <a href="/">Voltar</a>
 </div>
-
-<script>
-    function buscarDados() {
-        const cpf = document.getElementById('buscaCpf').value;
-        fetch('/api/pessoas')
-            .then(res => res.json())
-            .then(data => {
-                const p = data.find(pessoa => pessoa.cpf === cpf);
-                if (p) {
-                    document.getElementById('id').value = p.id;
-                    document.getElementById('nome').value = p.nome;
-                    document.getElementById('sobrenome').value = p.sobrenome;
-                    document.getElementById('email').value = p.email;
-                    document.getElementById('cpf').value = p.cpf;
-                } else { alert('Pessoa não encontrada!'); }
-            });
-    }
-
-    function atualizarDados() {
-        const id = document.getElementById('id').value;
-        if (!id) return alert("Busque um usuário primeiro!");
-
-        const dados = {
-            nome: document.getElementById('nome').value,
-            sobrenome: document.getElementById('sobrenome').value,
-            email: document.getElementById('email').value,
-            cpf: document.getElementById('cpf').value
-            // O JSON Server mantém os outros campos se você usar PATCH ou sobrescreve com PUT
-        };
-
-        fetch(`/api/pessoas/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dados)
-        }).then(() => alert('Dados atualizados!'));
-    }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
