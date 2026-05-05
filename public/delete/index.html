@@ -2,14 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Excluir Registro</title>
-    <link rel="stylesheet" href="../style.css"> <!-- Reutilize seu CSS -->
+    <title>Excluir Registro - CRUD CPF</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Excluir por CPF</h1>
-    <input type="text" id="cpfBusca" placeholder="Digite o CPF (ex: 123.456.789-00)">
-    <button onclick="buscarParaDeletar()">Buscar e Excluir</button>
+    <h1>Excluir Registro</h1>
+    <p>Busque pelo CPF para remover o cadastro do sistema.</p>
+
+    <div class="search-box">
+        <input type="text" id="cpfBusca" placeholder="000.000.000-00">
+        <button onclick="buscarParaDeletar()">Buscar e Excluir</button>
+    </div>
+
     <p id="mensagem"></p>
     <br>
     <a href="/">Voltar para o Início</a>
