@@ -8,7 +8,7 @@ async function carregarDados() {
 
         if (dados.length > 0) {
             const p = dados[0];
-            // Preenche todos os campos obrigatórios da atividade
+
             document.getElementById('idEdit').value = p.id;
             document.getElementById('nome').value = p.nome || '';
             document.getElementById('sobrenome').value = p.sobrenome || '';
@@ -37,7 +37,7 @@ async function carregarDados() {
 async function salvarAlteracoes() {
     const id = document.getElementById('idEdit').value;
 
-    // Monta o objeto completo conforme exigido pela UMC
+
     const novosDados = {
         nome: document.getElementById('nome').value,
         sobrenome: document.getElementById('sobrenome').value,
@@ -49,7 +49,7 @@ async function salvarAlteracoes() {
         cidade: document.getElementById('cidade').value,
         estado: document.getElementById('estado').value,
         rg: document.getElementById('rg').value,
-        cpf: document.getElementById('cpfInalteravel').value // Mantém o CPF original
+        cpf: document.getElementById('cpfInalteravel').value
     };
 
     try {
@@ -61,7 +61,7 @@ async function salvarAlteracoes() {
 
         if (res.ok) {
             alert("Sucesso: Cadastro de " + novosDados.nome + " atualizado!");
-            window.location.href = "/get/index.html"; // Redireciona para a lista
+            window.location.href = "/get/index.html";
         } else {
             alert("Erro ao salvar alterações.");
         }

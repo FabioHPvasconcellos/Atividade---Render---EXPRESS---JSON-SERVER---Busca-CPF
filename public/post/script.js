@@ -20,6 +20,6 @@ function enviarDados() {
     .then(res => res.json())
     .then(() => {
         alert('Registro criado com sucesso!');
-        location.reload(); // Recarrega para limpar
+        location.reload();
     });
 }

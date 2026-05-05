@@ -8,7 +8,6 @@ async function buscarParaDeletar() {
     }
 
     try {
-        // Busca o registro pelo CPF para obter o ID interno
         const response = await fetch(`/api/pessoas?cpf=${cpf}`);
         const dados = await response.json();
 
